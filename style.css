@@ -1,0 +1,241 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+}
+
+/* 🖼️ FULL IMAGE */
+.bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url('./picture.jpg') center/contain no-repeat;
+  background-color: #000;
+  z-index: -2;
+}
+
+/* 🎬 DARK CINEMA */
+.bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.85)
+  );
+}
+
+/* ✨ BREATHING LIGHT (THIS IS THE MAGIC) */
+.bg::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: blur(70px);
+  animation: breathe 2s ease-in-out infinite;
+}
+
+/* LAYOUT */
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 20px;
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+h1 {
+  overflow: hidden;
+}
+
+/* ✨ NAME - LUXURY STYLE */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.8rem;
+  font-weight: 500;
+  letter-spacing: 4px;
+  position: relative;
+  color: #fff;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.9);
+  animation: floatTitle 6s ease-in-out infinite;
+
+  display: flex;
+  flex-direction: column; /* This stacks the ring UNDER the text */
+  align-items: center;    /* This centers the ring horizontally */
+  justify-content: center;
+  gap: 15px;
+  overflow: visible;
+}
+
+/* ✨ SHIMMER LINE EFFECT */
+h1::after {
+  content: "";
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shine 3s infinite;
+}
+
+.shimmer-text {
+  position: relative;
+  display: inline-block;
+  padding: 0 20px; /* Gives the shine room to move */
+  overflow: hidden; /* This acts as a wall; the shine cannot exit this box */
+  font-family: inherit; /* Inherits Playfair Display from h1 */
+  font-weight: inherit;
+}
+
+/* ✨ THE SINGLE SHIMMER EFFECT */
+.shimmer-text::after {
+  content: "";
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg, 
+    transparent, 
+    rgba(255,255,255,0.35), 
+    transparent
+  );
+  animation: shine 3s infinite;
+}
+
+/* Remove any old h1::after styles to prevent the "two box" issue */
+h1::after {
+  display: none;
+}
+
+#ring {
+  width: 55px;
+  height: auto;
+  display: block;
+  animation: spin 10s linear infinite;
+filter: sepia(0.8) saturate(5) hue-rotate(-15deg) brightness(1.2) drop-shadow(0 0 8px rgba(255, 183, 197, 0.5));}
+/* COUNTDOWN */
+.countdown {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+/* GLASS BOX */
+.box {
+  width: 90px;
+  height: 110px;
+  backdrop-filter: blur(25px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: floatBox 1s ease-in-out infinite;
+}
+
+/* STAGGERED FLOAT (VERY IMPORTANT DETAIL) */
+.box:nth-child(2) { animation-delay: 0.5s; }
+.box:nth-child(3) { animation-delay: 1s; }
+.box:nth-child(4) { animation-delay: 1.5s; }
+
+/* NUMBERS */
+.box span {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* LABEL */
+.box p {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  opacity: 0.7;
+}
+
+/* 🔥 ANIMATIONS */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* breathing glow */
+@keyframes breathe {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+
+/* floating title */
+@keyframes floatTitle {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* floating boxes */
+@keyframes floatBox {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* shimmer */
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+
+  20% {
+    left: -100%;
+  }
+
+  70% {
+    left: 120%;
+  }
+
+  100% {
+    left: 120%;
+  }
+}
+
+/* fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 MOBILE */
+@media(max-width: 768px){
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  .countdown {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .box {
+    width: 70px;
+    height: 90px;
+  }
+
+  .box span {
+    font-size: 1.5rem;
+  }
+}
