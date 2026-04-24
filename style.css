@@ -9,6 +9,7 @@ body {
   height: 100vh;
   overflow: hidden;
   color: white;
+  background-color: #000;
 }
 
 /* 🖼️ FULL IMAGE */
@@ -16,7 +17,7 @@ body {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: url('./picture.jpg') center/contain no-repeat;
+  background: url('./picture.jpg') center/cover no-repeat;
   background-color: #000;
   z-index: -2;
 }
@@ -222,7 +223,8 @@ filter: sepia(0.8) saturate(5) hue-rotate(-15deg) brightness(1.2) drop-shadow(0 
 /* 📱 MOBILE */
 @media(max-width: 768px){
     .container {
-    margin-top: 15px;
+    margin-top: 0px;
+    padding-top: 40px
   }
   h1 {
     font-size: 2.3rem;
