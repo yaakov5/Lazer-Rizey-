@@ -223,10 +223,11 @@ filter: sepia(0.8) saturate(5) hue-rotate(-15deg) brightness(1.2) drop-shadow(0 
 /* 📱 MOBILE */
 @media(max-width: 768px){
     .container {
-
+    margin-top: 0px;
+    padding-top: 40px
   }
   h1 {
-    font-size: 2.3rem;
+    font-size: 2.5rem;
   }
 
   .countdown {
@@ -240,6 +241,6 @@ filter: sepia(0.8) saturate(5) hue-rotate(-15deg) brightness(1.2) drop-shadow(0 
   }
 
   .box span {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }
